@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Interest and Compound Interest Calculator</title>
+        <style>
+            body {
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                background-color: #f4f4f4;
+                margin: 20px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .calculator-container {
+                flex: 1;
+                padding: 30px;
+                border: 2px solid #ccc;
+                border-radius: 8px;
+                background-color: #fff;
+                margin: 10px;
+            }
+
+            h3 {
+                color: #333;
+                text-align: center;
+            }
+
+            label {
+                display: block;
+                margin-top: 10px;
+                color: #555;
+                padding-bottom: 5px;
+
+            }
+
+            input {
+                width: 200px;
+                padding: 5px;
+                margin-bottom: 10px;
+            }
+
+            button {
+                background-color:rgb(0,139,139);
+                color: white;
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+
+            button:hover {
+                background-color: rgb(0,180,180);
+            }
+
+            .result {
+                margin-top: 20px;
+                font-size: 18px;
+                color:darkolivegreen;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="calculator-container">
+            <h3> SIMPLE INTEREST CALCULATOR </h3>
+            <label>Principal Amount</label>
+            <input type="number" id="a1">
+            <br>
+            <label>Rate of Interest</label>
+            <input type="number" id="ir1">
+            <br>
+            <label>Time (in years)</label>
+            <input type="number" id="mp1">
+            <br>
+            <button onclick="calsi()">Calculate SI </button>
+            <br>
+            <div id="si1" class="result"></div>
+            <div id="total1" class="result"></div>
+        </div>
+
+        <div class="calculator-container">
+            <h3> COMPOUND INTEREST CALCULATOR </h3>
+            <label>Principal Amount</label>
+            <input type="number" id="a2">
+            <br>
+            <label>Rate of Interest</label>
+            <input type="number" id="ir2">
+            <br>
+            <label>Time (in years)</label>
+            <input type="number" id="mp2">
+            <br>
+            <label>Number of Times Interest is Compounded per Year</label>
+            <input type="number" id="nc2">
+            <br>
+            <button onclick="calci()">Calculate CI </button>
+            <br>
+            <div id="si2" class="result"></div>
+            <div id="total2" class="result"></div>
+        </div>
+
+        <script>
+            function calsi() {
+                const a = parseFloat(document.getElementById("a1").value);
+                const ir = parseFloat(document.getElementById("ir1").value);
+                const mp = parseFloat(document.getElementById("mp1").value);
+                const interest = ((a * ir * mp) / 100).toFixed(2);
+                const total = (a + parseFloat(interest)).toFixed(2);
+                document.querySelector("#si1").innerHTML = "Simple Interest: ₹" + interest;
+                document.querySelector("#total1").innerHTML = "Total Amount: ₹" + total;
+            }
+            function calci() {
+                const a = parseFloat(document.getElementById("a2").value);
+                const ir = parseFloat(document.getElementById("ir2").value);
+                const mp = parseFloat(document.getElementById("mp2").value);
+                const nc = parseFloat(document.getElementById("nc2").value);
+                const ci = (a * Math.pow(1 + (ir/100) / nc, nc * mp) - a).toFixed(2);
+                const total = (a + parseFloat(ci)).toFixed(2);
+
+                document.querySelector("#si2").innerHTML = "Compound Interest: ₹" + ci;
+                document.querySelector("#total2").innerHTML = "Total Amount: ₹" + total;
+            }
+        </script>
+    </body>
+</html>
